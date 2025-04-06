@@ -1,0 +1,6 @@
+learn-tofu-*
+
+*.txt
+*.json
+
+.terraform
