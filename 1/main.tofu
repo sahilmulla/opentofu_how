@@ -1,19 +1,19 @@
-# resource "google_compute_instance" "app" {
-#   name         = "my-tofu-machine"
-#   machine_type = "n1-standard-1"
-#   zone         = var.zone
+resource "google_compute_instance" "app" {
+  name         = "my-tofu-machine"
+  machine_type = "n1-standard-1"
+  zone         = var.zone
 
-#   boot_disk {
-#     initialize_params {
-#       image = "ubuntu-minimal-2210-kinetic-amd64-v20230126"
-#     }
-#   }
+  boot_disk {
+    initialize_params {
+      image = "ubuntu-minimal-2210-kinetic-amd64-v20230126"
+    }
+  }
 
-#   network_interface {
-#     network = "default"
-#     access_config {}
-#   }
-# }
+  network_interface {
+    network = "default"
+    access_config {}
+  }
+}
 
 variable "greeting" {
   default = "Hello"
