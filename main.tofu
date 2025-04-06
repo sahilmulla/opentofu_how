@@ -38,3 +38,8 @@ resource "local_file" "todo_data" {
   content  = data.http.todo.response_body
   filename = "${path.module}/todo_data.json"
 }
+
+resource "local_file" "other" {
+  content  = jsondecode(local_file.todo_data.content).title
+  filename = "${path.module}/title.txt"
+}
