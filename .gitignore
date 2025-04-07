@@ -4,3 +4,4 @@ learn-tofu-*
 *.json
 
 .terraform
+**/*.tfstate
