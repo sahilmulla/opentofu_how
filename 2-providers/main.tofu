@@ -15,6 +15,10 @@ resource "google_storage_folder" "test" {
   name   = "${each.key}/"
 }
 
+output "folders" {
+  value = google_storage_folder.test
+}
+
 variable "todo_ids" {
   type        = set(string)
   description = "ids of todo"
