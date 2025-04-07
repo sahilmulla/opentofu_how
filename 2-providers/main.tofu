@@ -15,18 +15,18 @@ resource "google_storage_folder" "test" {
   name   = "${each.key}/"
 }
 
-variable "todo_id" {
+variable "todo_ids" {
   type        = set(string)
-  description = "id of todo"
+  description = "ids of todo"
 }
 
 data "http" "todo" {
-  for_each = var.todo_id
+  for_each = var.todo_ids
   url      = "https://jsonplaceholder.typicode.com/todos/${each.value}"
 }
 
 resource "google_storage_bucket_object" "todo_data" {
-  for_each = var.todo_id
+  for_each = var.todo_ids
 
   bucket = google_storage_bucket.foo.name
 
