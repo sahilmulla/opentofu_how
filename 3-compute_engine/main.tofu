@@ -1,6 +1,7 @@
 resource "google_compute_instance" "app" {
   name         = "my-tofu-machine"
   machine_type = "n1-standard-1"
+  zone         = var.zone
 
   boot_disk {
     initialize_params {
@@ -16,5 +17,12 @@ resource "google_compute_instance" "app" {
 
 resource "google_compute_instance_group" "buzz" {
   name      = "buzz"
-  instances = [google_compute_instance.app.self_link]
+  instances = ["${google_compute_instance.app.id}"]
+}
+
+output "instance" {
+  value = tomap({
+    id        = google_compute_instance.app.id
+    self_link = google_compute_instance.app.self_link
+  })
 }
