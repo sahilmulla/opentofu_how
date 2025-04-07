@@ -30,6 +30,7 @@ resource "google_storage_bucket_object" "todo_data" {
 
   bucket = google_storage_bucket.foo.name
 
-  name    = "f_1/todo:${each.value}"
-  content = data.http.todo[each.key].response_body
+  name         = "${google_storage_folder.test["f_2"].name}todo:${each.value}.json"
+  content      = data.http.todo[each.key].response_body
+  content_type = "application/json"
 }
