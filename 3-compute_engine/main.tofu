@@ -24,9 +24,22 @@ resource "google_compute_instance" "app" {
     curl -fsSL https://get.docker.com -o get-docker.sh
     sudo sh ./get-docker.sh
     sudo service docker start
-    sudo docker run -d -p 80:80 nginx:latest
+    sudo docker run -d -p 80:80 yeasy/simple-web:latest
 
     EOF
+}
+
+resource "google_compute_firewall" "allow_http" {
+  name    = "allow-http"
+  network = "default"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["80"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+  target_tags   = ["http-server"]
 }
 
 # resource "google_compute_instance_group" "buzz" {
@@ -40,3 +53,8 @@ output "instance" {
     self_link = google_compute_instance.app.self_link
   })
 }
+
+output "network" {
+  value = google_compute_instance.app.network_interface
+}
+
