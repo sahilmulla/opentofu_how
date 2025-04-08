@@ -1,7 +1,6 @@
 resource "google_compute_instance" "app" {
   name         = "my-tofu-machine"
   machine_type = "n1-standard-1"
-  zone         = var.zone
 
   boot_disk {
     initialize_params {

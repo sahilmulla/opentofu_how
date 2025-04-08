@@ -9,6 +9,6 @@ terraform {
 
 provider "google" {
   project     = "learn-tofu"
-  zone        = "asia-south1-c"
+  zone        = var.zone
   credentials = "../learn-tofu-f79ddb012979.json"
 }
