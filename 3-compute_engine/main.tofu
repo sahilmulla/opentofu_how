@@ -8,7 +8,7 @@ resource "google_compute_instance" "app" {
     }
   }
 
-  tags = ["${var.name_prefix}-http-server"]
+  tags = ["${var.name_prefix}-http-server", "http-server"]
 
   network_interface {
     network = "default"

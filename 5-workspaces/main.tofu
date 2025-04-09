@@ -1,6 +1,9 @@
+variable "name_prefix" {
+  type = string
+}
+
 module "site" {
   source = "../3-compute_engine"
 
-  zone        = "asia-south1-c"
-  name_prefix = "prod"
+  name_prefix = var.name_prefix
 }
