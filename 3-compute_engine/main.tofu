@@ -1,5 +1,5 @@
 resource "google_compute_instance" "app" {
-  name         = "my-tofu-machine"
+  name         = "${var.name_prefix}-machine"
   machine_type = "n1-standard-1"
 
   boot_disk {
@@ -8,7 +8,7 @@ resource "google_compute_instance" "app" {
     }
   }
 
-  tags = ["http-server"]
+  tags = ["${var.name_prefix}-http-server"]
 
   network_interface {
     network = "default"
@@ -29,7 +29,7 @@ resource "google_compute_instance" "app" {
 }
 
 resource "google_compute_firewall" "allow_http" {
-  name    = "allow-http"
+  name    = "${var.name_prefix}-allow-http"
   network = "default"
 
   allow {
@@ -38,7 +38,7 @@ resource "google_compute_firewall" "allow_http" {
   }
 
   source_ranges = ["0.0.0.0/0"]
-  target_tags   = ["http-server"]
+  target_tags   = ["${var.name_prefix}-http-server"]
 }
 
 # resource "google_compute_instance_group" "buzz" {
